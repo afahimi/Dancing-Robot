@@ -68,6 +68,8 @@ text_group.append(text_area)  # Subgroup for text scaling
 splash.append(text_group)
 """
 
+
+"""
 text = "*** i love CPEN 291! ***"
 text_area = label.Label(terminalio.FONT, text=text, color=TEXT_COLOR)
 text_width = text_area.bounding_box[2] * FONTSCALE
@@ -78,6 +80,10 @@ text_group = displayio.Group(
 )
 text_group.append(text_area)
 splash.append(text_group)
+
+"""
+
+
 
 '''
 # Convert the image file into a displayio.Bitmap
@@ -91,8 +97,32 @@ tile_grid = displayio.TileGrid(image, pixel_shader=displayio.ColorConverter(), x
 splash.append(tile_grid)
 '''
 
-while True:
+img = "rock_240x135.bmp"
+img2 = "dogweird.bmp"
+img4 = "zhongnew.bmp"
+splash = displayio.Group()
+display.show(splash)
 
+
+
+
+
+while True:
+    bitmap = displayio.OnDiskBitmap(img2)
+    gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
+    splash.append(gridtitle)
+
+    time.sleep(5)
+
+    bitmap = displayio.OnDiskBitmap(img)
+    gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
+    splash.append(gridtitle)
+    time.sleep(5)
+
+    bitmap = displayio.OnDiskBitmap(img4)
+    gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
+    splash.append(gridtitle)
+    time.sleep(5)
     """
 
     # Convert the image file into a displayio.Bitmap
@@ -108,6 +138,8 @@ while True:
     splash.remove(tile_grid)
 
     """
+
+
 
     """
     text = "i love sathish"
@@ -138,9 +170,14 @@ while True:
 
     """
 
+    """
+
+
     for i in range(text_width + display.width):
         text_group.x = display.width - i
         time.sleep(0.001)
+
+    """
 
 
 

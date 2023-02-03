@@ -68,7 +68,7 @@ text_group.append(text_area)  # Subgroup for text scaling
 splash.append(text_group)
 """
 
-text = "i love sathish"
+text = "*** i love CPEN 291! ***"
 text_area = label.Label(terminalio.FONT, text=text, color=TEXT_COLOR)
 text_width = text_area.bounding_box[2] * FONTSCALE
 text_group = displayio.Group(
@@ -78,9 +78,6 @@ text_group = displayio.Group(
 )
 text_group.append(text_area)
 splash.append(text_group)
-
-
-
 
 '''
 # Convert the image file into a displayio.Bitmap
@@ -94,15 +91,24 @@ tile_grid = displayio.TileGrid(image, pixel_shader=displayio.ColorConverter(), x
 splash.append(tile_grid)
 '''
 
-
-
-
-
-
-
-
-
 while True:
+
+    """
+
+    # Convert the image file into a displayio.Bitmap
+    with open("alireza.bmp", "rb") as f:
+        image = displayio.OnDiskBitmap(f)
+
+    # Create a displayio.TileGrid object with the bitmap
+    tile_grid = displayio.TileGrid(image, pixel_shader=displayio.ColorConverter(), x=0, y=0)
+
+    # Add the TileGrid object to the display's Group
+    splash.append(tile_grid)
+    time.sleep(10)
+    splash.remove(tile_grid)
+
+    """
+
     """
     text = "i love sathish"
     text_area = label.Label(terminalio.FONT, text=text, color=TEXT_COLOR)
@@ -128,12 +134,15 @@ while True:
     splash.append(text_group)
     time.sleep(3)
     splash.remove(text_group)
-    """
 
+
+    """
 
     for i in range(text_width + display.width):
         text_group.x = display.width - i
-        time.sleep(0.005)
+        time.sleep(0.001)
+
+
 
 
 

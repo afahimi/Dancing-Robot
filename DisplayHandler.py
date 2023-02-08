@@ -9,6 +9,7 @@ from adafruit_display_text import label
 from adafruit_st7789 import ST7789
 import time
 
+
 class DisplayHandler:
     # First set some parameters used for shapes and text
     BORDER = 20
@@ -58,22 +59,24 @@ class DisplayHandler:
         bitmap = displayio.OnDiskBitmap("dogweird.bmp")
         gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
         self.splash.append(gridtitle)
-        time.sleep(5)
+        # time.sleep(5)
 
     def show_image2(self):
         bitmap = displayio.OnDiskBitmap("rock_240x135.bmp")
         gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
-        self.splash.append
-        
+        self.splash.append(gridtitle)
+        # time.sleep(5)
+
     def show_image3(self):
         bitmap = displayio.OnDiskBitmap("zhongnew.bmp")
         gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
-        self.splash.append
-        
-        
+        self.splash.append(gridtitle)
+        # time.sleep(5)
+
+
 if __name__ == "__main__":
     lcd = DisplayHandler()
-    lcd.show_image2()
-    
+    lcd.show_image3()
+
     while True:
         pass

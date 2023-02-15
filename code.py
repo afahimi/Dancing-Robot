@@ -11,6 +11,8 @@ import terminalio
 import displayio
 from adafruit_display_text import label
 from adafruit_st7789 import ST7789
+import random
+
 
 red_led = digitalio.DigitalInOut(board.GP0)
 green_led = digitalio.DigitalInOut(board.GP1)
@@ -151,27 +153,24 @@ def ninety():
     servo_right_foot.duty_cycle = int(1/2*2**16)
     servo_right_thigh.duty_cycle = int(1/2*2**16)
     servo_left_thigh.duty_cycle = int(1/2*2**16)
+def set_led(red, green, blue):
+    if (red):
+        red_led.value = random_hex_color()
+    else:
+        red_led.value = False
+    if (green):
+        green_led.value = random_hex_color()
+    else:
+        green_led.value = False
+    if (blue):
+        blue_led.value = random_hex_color()
+    else:
+        blue_led.value = False
 
 def dance_move1():
-    """
-    text = "i love sathish"
-    text_area = label.Label(terminalio.FONT, text=text, color=TEXT_COLOR)
-    text_width = text_area.bounding_box[2] * FONTSCALE
-    text_group = displayio.Group(
-        scale=FONTSCALE,
-        x=display.width,
-        y=display.height // 2,
-    )
-    text_group.append(text_area)
-    splash.append(text_group)
 
+    time.sleep(1);
 
-    for i in range(text_width + display.width):
-        text_group.x = int(display.width - i/2.0)
-        time.sleep(0.001)
-    time.sleep(0.1)
-
-    """
     bitmap = displayio.OnDiskBitmap(img)
     gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
     splash.append(gridtitle)
@@ -186,6 +185,8 @@ def dance_move1():
                 set_servo_angle(servo_left_foot, 90 + math.sqrt(100*j))
                 set_servo_angle(servo_right_thigh, 125)
                 set_servo_angle(servo_left_thigh, 125)
+                set_led(True, False,True)
+                play_note(587, 0.5)
                 time.sleep(.01)
             time.sleep(0.25)
         for k in range (0,5):
@@ -194,7 +195,9 @@ def dance_move1():
                 set_servo_angle(servo_left_foot, 90 )
                 set_servo_angle(servo_right_thigh, 125 - math.sqrt(100*j))
                 set_servo_angle(servo_left_thigh, 125 - math.sqrt(100*j))
+                set_led(True, True,False)
                 time.sleep(.01)
+                play_note(698,0.5)
             time.sleep(0.25)
 
         for k in range (0,5):
@@ -204,6 +207,8 @@ def dance_move1():
                 set_servo_angle(servo_right_thigh, 135)
                 set_servo_angle(servo_left_thigh, 35)
                 time.sleep(.01)
+                set_led(False, True,True)
+                play_note(659, 2.0)
             time.sleep(0.25)
         for k in range (0,5):
             for j in range (1,10):
@@ -212,7 +217,10 @@ def dance_move1():
                 set_servo_angle(servo_right_thigh, 125)
                 set_servo_angle(servo_left_thigh, 125)
                 time.sleep(.01)
+                set_led(True, True,True)
+                play_note(347,0.5)
             time.sleep(0.25)
+    be_quiet()
 def dance_move2():
     bitmap = displayio.OnDiskBitmap(img2)
     gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
@@ -227,6 +235,8 @@ def dance_move2():
             set_servo_angle(servo_left_foot, 180-i )
             set_servo_angle(servo_right_thigh, i)
             set_servo_angle(servo_left_thigh, 180-i)
+            set_led(True, True,False)
+            play_note(262,0.5)
             time.sleep(.01)
 
         for i in range(60,90):
@@ -234,12 +244,16 @@ def dance_move2():
             set_servo_angle(servo_left_foot, 180-i )
             set_servo_angle(servo_right_thigh, i)
             set_servo_angle(servo_left_thigh, 180-i)
+            set_led(True, False,True)
+            play_note(330,0.5)
             time.sleep(.01)
         for i in range(60,90):
             set_servo_angle(servo_right_foot, i+45 )
             set_servo_angle(servo_left_foot, 180-i )
             set_servo_angle(servo_right_thigh, i+45)
             set_servo_angle(servo_left_thigh, 180-i)
+            set_led(False, True,True)
+            play_note(220,0.5)
             time.sleep(.01)
         time.sleep(0.5)
         for i in range(90,60,-1):
@@ -247,6 +261,8 @@ def dance_move2():
             set_servo_angle(servo_left_foot, i )
             set_servo_angle(servo_right_thigh,180- i)
             set_servo_angle(servo_left_thigh, i)
+            set_led(True, True,True)
+            play_note(196,0.5)
             time.sleep(.01)
 
         for i in range(60,90):
@@ -254,17 +270,21 @@ def dance_move2():
             set_servo_angle(servo_left_foot, i )
             set_servo_angle(servo_right_thigh,180- i)
             set_servo_angle(servo_left_thigh, i)
+            set_led(True, False,True)
+            play_note(294,0.5)
             time.sleep(.01)
         for i in range(60,90):
             set_servo_angle(servo_right_foot, 180-i )
             set_servo_angle(servo_left_foot, i+45 )
             set_servo_angle(servo_right_thigh, 180-i)
             set_servo_angle(servo_left_thigh, i+45)
+            set_led(False, True,True)
+            play_note(330,0.5)
             time.sleep(.01)
         time.sleep(0.2)
         ninety();
         time.sleep(0.5)
-
+    be_quiet();
 
 def dance_move3():
     bitmap = displayio.OnDiskBitmap(img4)
@@ -280,25 +300,34 @@ def dance_move3():
             set_servo_angle(servo_left_foot, 75)
             set_servo_angle(servo_right_thigh, 90)
             set_servo_angle(servo_left_thigh, 90)
+            set_led(False, True,True)
+            play_note(262,0.5)
             time.sleep(0.4)
             set_servo_angle(servo_right_foot, 30)
             set_servo_angle(servo_left_foot,150 )
             set_servo_angle(servo_right_thigh, 90)
             set_servo_angle(servo_left_thigh, 90)
+            set_led(True, True,False)
+            play_note(294,0.5)
             time.sleep(0.4)
         for j in range (0,50):
             set_servo_angle(servo_right_foot, 90 +40*(math.sin(j)))
             set_servo_angle(servo_left_foot,90 + 40*math.sin(j))
             set_servo_angle(servo_right_thigh, 90)
             set_servo_angle(servo_left_thigh, 90)
+            set_led(True, False,True)
+            play_note(330,0.5)
             time.sleep(0.02)
         for j in range (0,50):
             set_servo_angle(servo_right_foot, 90)
             set_servo_angle(servo_left_foot,90)
             set_servo_angle(servo_right_thigh, 90+40*math.sin(j))
             set_servo_angle(servo_left_thigh, 90+40*math.sin(j))
+            set_led(True, True,True)
+            play_note(294,0.5)
             time.sleep(0.02)
         i +=1
+    be_quiet();
 
 def dance_move4():
     bitmap = displayio.OnDiskBitmap(img6)
@@ -313,11 +342,15 @@ def dance_move4():
             set_servo_angle(servo_left_foot, 37)
             set_servo_angle(servo_right_thigh, 57)
             set_servo_angle(servo_left_thigh, 57)
+            set_led(True, False,False)
+            play_note(262,0.5)
             time.sleep(0.4)
             set_servo_angle(servo_right_foot, 87)
             set_servo_angle(servo_left_foot,77)
             set_servo_angle(servo_right_thigh, 97)
             set_servo_angle(servo_left_thigh, 97)
+            set_led(False, False,True)
+            play_note(294,0.5)
             time.sleep(0.4)
             i+=1
 
@@ -330,18 +363,25 @@ def dance_move4():
             set_servo_angle(servo_left_foot, 90)
             set_servo_angle(servo_right_thigh, 75)
             set_servo_angle(servo_left_thigh, 75)
+            set_led(False, True,False)
+            play_note(330,0.5)
             time.sleep(0.6)
             set_servo_angle(servo_right_foot, 90)
             set_servo_angle(servo_left_foot,90)
             set_servo_angle(servo_right_thigh, 120)
             set_servo_angle(servo_left_thigh, 120)
+            set_led(True, True,True)
+            play_note(349,0.5)
             time.sleep(0.6)
             i +=1
         set_servo_angle(servo_right_foot, 90)
         set_servo_angle(servo_left_foot,90)
         set_servo_angle(servo_right_thigh, 90)
         set_servo_angle(servo_left_thigh, 90)
+        set_led(True, False,True)
+        play_note(392,0.5)
         time.sleep(0.7)
+    be_quiet()
 def dance_move5():
     bitmap = displayio.OnDiskBitmap(img5)
     gridtitle = displayio.TileGrid(bitmap, pixel_shader=bitmap.pixel_shader)
@@ -353,25 +393,41 @@ def dance_move5():
         set_servo_angle(servo_left_foot, 110)
         set_servo_angle(servo_right_thigh, 110)
         set_servo_angle(servo_left_thigh, 110)
+        set_led(True, True,False)
+        play_note(659,0.5)
         time.sleep(1)
         set_servo_angle(servo_right_foot, 179)
+        set_led(False, True,True)
+        play_note(698,0.5)
         time.sleep(0.5)
         set_servo_angle(servo_right_foot, 60)
+        set_led(True, True,True)
+        play_note(740,0.5)
         time.sleep(0.5)
         set_servo_angle(servo_right_foot, 125)
+        set_led(True, True,False)
+        play_note(784,0.5)
         time.sleep(1)
         set_servo_angle(servo_right_foot, 50)
         set_servo_angle(servo_left_foot, 50)
         set_servo_angle(servo_right_thigh, 50)
         set_servo_angle(servo_left_thigh, 50)
+        set_led(True, False,True)
+        play_note(831,0.5)
         time.sleep(1)
         set_servo_angle(servo_left_foot, 179)
+        set_led(False, True,True)
+        play_note(880,0.5)
         time.sleep(0.5)
         set_servo_angle(servo_left_foot, 60)
+        set_led(True, True,False)
+        play_note(988,0.5)
         time.sleep(0.5)
         set_servo_angle(servo_left_foot, 125)
+        set_led(False, True,True)
+        play_note(1047,0.5)
         time.sleep(1)
-
+    be_quiet()
 
 def dance_move6():
     bitmap = displayio.OnDiskBitmap(img7)
@@ -381,6 +437,8 @@ def dance_move6():
     time.sleep(5)
     for k in range(0,5):
         for j in range (k,45):
+            set_led(True, True,True)
+            play_note(261,0.5)
             set_servo_angle(servo_right_foot, j/3+70)
             set_servo_angle(servo_left_foot, j/3+70)
             set_servo_angle(servo_right_thigh, j/2+60)
@@ -388,17 +446,23 @@ def dance_move6():
             time.sleep(0.01)
 
     for i in range (1,NUM_ITERATIONS):
+        set_led(False, True,True)
+        play_note(329,0.5)
         set_servo_angle(servo_right_foot,90 )
         set_servo_angle(servo_left_foot, 90)
         set_servo_angle(servo_right_thigh, 100)
         set_servo_angle(servo_left_thigh, 100)
         time.sleep(0.1)
+        set_led(True, True,False)
+        play_note(392,0.1)
         set_servo_angle(servo_right_foot, 150)
         set_servo_angle(servo_left_foot, 150)
         set_servo_angle(servo_right_thigh, 100)
         set_servo_angle(servo_left_thigh, 100)
         time.sleep(0.1)
         set_servo_angle(servo_right_foot, 90)
+        set_led(True, False,True)
+        play_note(523,0.1)
         set_servo_angle(servo_left_foot, 90)
         set_servo_angle(servo_right_thigh, 100)
         set_servo_angle(servo_left_thigh, 100)
@@ -410,6 +474,8 @@ def dance_move6():
             set_servo_angle(servo_left_foot, 90+k)
             set_servo_angle(servo_right_thigh, 100+2*k)
             set_servo_angle(servo_left_thigh, 100-2*k)
+            set_led(True, True,True)
+            play_note(261,0.5)
             time.sleep(0.02)
 
         for k in range(0,20):
@@ -417,17 +483,22 @@ def dance_move6():
             set_servo_angle(servo_left_foot, 90)
             set_servo_angle(servo_right_thigh, 100-2*k)
             set_servo_angle(servo_left_thigh, 100+2*k)
+            set_led(True, True,False)
+            play_note(392,0.5)
             time.sleep(0.02)
         time.sleep(1)
+        set_led(True, False,True)
+        play_note(523,0.5)
         ninety();
         time.sleep(1)
-
         for j in range (0,5):
             for s in range(1,5):
                 set_servo_angle(servo_right_foot, 80+2**s)
                 set_servo_angle(servo_left_foot, 120-2**s)
                 set_servo_angle(servo_right_thigh, 100-2*s)
                 set_servo_angle(servo_left_thigh, 100+2*s)
+                set_led(False, True,True)
+                play_note(844,0.5)
                 time.sleep(0.01*s)
             time.sleep(0.2)
             for s in range(1,5):
@@ -435,6 +506,8 @@ def dance_move6():
                 set_servo_angle(servo_left_foot, 80+2**s)
                 set_servo_angle(servo_right_thigh, 100+2*s)
                 set_servo_angle(servo_left_thigh, 100-2*s)
+                set_led(True, False,True)
+                play_note(420,0.5)
                 time.sleep(0.01*s)
             time.sleep(0.1)
 
@@ -444,6 +517,8 @@ def dance_move6():
                 set_servo_angle(servo_left_foot, 90+2**s)
                 set_servo_angle(servo_right_thigh, 100+2*s)
                 set_servo_angle(servo_left_thigh, 110-2*s)
+                set_led(True, True,False)
+                play_note(669,0.5)
                 time.sleep(0.01*s)
             time.sleep(0.2)
             for s in range(1,5):
@@ -451,8 +526,16 @@ def dance_move6():
                 set_servo_angle(servo_left_foot, 120-2**s)
                 set_servo_angle(servo_right_thigh, 100-2*s)
                 set_servo_angle(servo_left_thigh, 100+2*s)
+                set_led(True, True,True)
+                play_note(918,0.5)
                 time.sleep(0.01*s)
             time.sleep(0.1)
+    be_quiet()
+
+
+
+
+
 
 def all_dancemove():
     dance_move1()
@@ -470,11 +553,97 @@ def all_dancemove():
 def incorrect_input():
     print("Enter in a valid number!")
     time.sleep(5)
+def play_note(note_freq, duration):
+    frequency = int(1/note_freq*1000000*1/2)
+    if note_freq == "R":
+        speaker.duty_cycle = int(0)
+    else:
+        speaker.duty_cycle = int(35000 / 2)
+    speaker.frequency = frequency
+    #toSelect = random.randint(0,len(colorList)-1);
+    #led.color = colorList[toSelect];
+def be_quiet():
+    speaker.duty_cycle = 0
 
 dance_array = [None, dance_move1, dance_move2, dance_move3, dance_move4, dance_move5, dance_move6, incorrect_input, incorrect_input, incorrect_input, incorrect_input, all_dancemove, incorrect_input]
 
-while True:
+import random
 
+def random_hex_color():
+    color = random.randint(0, 0xFFFFFF)
+    print(color)
+    return f"#{color:06x}"
+
+
+
+
+
+import time
+import pwmio
+import board
+import digitalio
+import simpleio
+from audiomp3 import MP3Decoder
+
+try:
+    from audioio import AudioOut
+except ImportError:
+    try:
+        from audiopwmio import PWMAudioOut as AudioOut
+    except ImportError:
+        pass  # not always supported by every board!
+
+speaker = pwmio.PWMOut(board.GP5, frequency=400, duty_cycle=2 ** 16, variable_frequency=True)
+variable_frequency = True
+
+
+
+import time
+import board
+import digitalio
+
+# Define pins for the sonar sensor
+trig_pin = digitalio.DigitalInOut(board.GP17)
+echo_pin = digitalio.DigitalInOut(board.GP4)
+
+# Set the direction of the pins
+trig_pin.direction = digitalio.Direction.OUTPUT
+echo_pin.direction = digitalio.Direction.INPUT
+
+# Define a function to measure distance with the sonar sensor
+def measure_distance():
+    # Set trigger pin high for 10 microseconds
+    trig_pin.value = True
+    time.sleep(0.00001)
+    trig_pin.value = False
+
+    # Wait for echo pin to go high and then low
+    while echo_pin.value == False:
+        pass
+    pulse_start = time.monotonic()
+    while echo_pin.value == True:
+        pass
+    pulse_end = time.monotonic()
+
+    # Calculate distance based on pulse duration
+    pulse_duration = pulse_end - pulse_start
+    speed_of_sound = 34300  # cm/s at 20°C
+    distance = pulse_duration * speed_of_sound / 2
+
+    return distance
+    
+
+
+while True:
+    distance = measure_distance()
+    if (distance<1.0):
+        randval = random.randint(1,6)
+        print(f"retval is: {randval}")
+        function = dance_array[randval]
+        if function:
+            function()
+    time.sleep(0.5)
+    
     key = get_keypad_value()
     ninety();
     if (key == "*"):
@@ -489,21 +658,22 @@ while True:
         function = dance_array[key]
         if function:
             function()
-    time.sleep(0.1)
+    time.sleep(0.01)
 
     red_led.value = True
     green_led.value = False
     blue_led.value = False
-    time.sleep(0.1)
+    time.sleep(0.5)
 
     red_led.value = False
     green_led.value = True
     blue_led.value = False
-    time.sleep(0.1)
+    time.sleep(0.5)
 
     red_led.value = False
     green_led.value = False
     blue_led.value = True
-    time.sleep(0.1)
+    time.sleep(0.5)
+    
 
 

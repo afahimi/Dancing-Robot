@@ -1,7 +1,7 @@
 # Dancing Robot
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/afahimi/Dancing-Robot/blob/main/DancingRobot.jpg">
+  <img width="460" height="700" src="https://github.com/afahimi/Dancing-Robot/blob/main/DancingRobot.jpg">
 </p>
 
 ## Overview

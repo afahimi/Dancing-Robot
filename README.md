@@ -46,21 +46,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## How to Contribute
-
-We love your input! We want to make contributing to this Dancing Robot project as easy and transparent as possible, whether it's:
-
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-
-If you wish to contribute, please follow our [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the terms of the [MIT license](LICENSE.md).
-
 ---
 
 Happy dancing with your new robot! 🕺🎵🤖

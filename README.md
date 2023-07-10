@@ -1,6 +1,8 @@
 # Dancing Robot
 
-![Dancing Robot](https://github.com/afahimi/Dancing-Robot/blob/main/DancingRobot.jpg)
+<p align="center">
+  <img width="460" height="300" src="https://github.com/afahimi/Dancing-Robot/blob/main/DancingRobot.jpg">
+</p>
 
 ## Overview
 Welcome to the Dancing Robot project! This is a 3D printed robot that's capable of dancing to the beats of music. The project integrates Raspberry Pi Pico-H to connect with a servo motor, speaker, and numpad, offering the user the ability to toggle between various dance modes. As the robot grooves, it plays music via the integrated speaker and indicates the current dance mode on a built-in LED. 

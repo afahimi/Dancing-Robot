@@ -37,11 +37,7 @@ git clone https://github.com/yourusername/dancing_robot.git
 ```bash
 cd dancing_robot
 ```
-3. Install the required dependencies.
-```bash
-pip install -r requirements.txt
-```
-4. Run the main program.
+3. Run the main program.
 ```bash
 python main.py
 ```
